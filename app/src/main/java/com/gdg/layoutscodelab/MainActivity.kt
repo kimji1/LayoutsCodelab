@@ -42,21 +42,18 @@ val topics = listOf(
 
 @Composable
 fun BodyContent(modifier: Modifier = Modifier) {
-    Row(modifier = modifier.horizontalScroll(rememberScrollState())) {
-        StaggeredGrid {
-            for (topic in topics) {
-                Chip(modifier = Modifier.padding(8.dp), text = topic)
+    Row(modifier = modifier
+        .background(color = Color.LightGray)
+        .padding(16.dp)
+        .size(200.dp)
+        .horizontalScroll(rememberScrollState()),
+        content = {
+            StaggeredGrid {
+                for (topic in topics) {
+                    Chip(modifier = Modifier.padding(8.dp), text = topic)
+                }
             }
-        }
-    }
-}
-
-@Preview
-@Composable
-fun LayoutsCodelabPreview() {
-    LayoutsCodelabTheme {
-        BodyContent()
-    }
+        })
 }
 
 @Composable
@@ -78,14 +75,6 @@ fun Chip(modifier: Modifier = Modifier, text: String) {
             Spacer(Modifier.width(4.dp))
             Text(text = text)
         }
-    }
-}
-
-@Preview
-@Composable
-fun ChipPreview() {
-    LayoutsCodelabTheme {
-        Chip(text = "Hi there")
     }
 }
 
@@ -149,5 +138,21 @@ fun StaggeredGrid(
                 rowX[row] += placeable.width
             }
         }
+    }
+}
+
+@Preview
+@Composable
+fun ChipPreview() {
+    LayoutsCodelabTheme {
+        Chip(text = "Hi there")
+    }
+}
+
+@Preview
+@Composable
+fun LayoutsCodelabPreview() {
+    LayoutsCodelabTheme {
+        BodyContent()
     }
 }
